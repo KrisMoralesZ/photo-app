@@ -11,9 +11,15 @@ class Payment < ApplicationRecord
   end
 
   def process_payment
-    customer = Stripe::Customer.create(email: email, card: token)
+    customer = Stripe::Customer.create({ email: email, source: token })
 
     Stripe::Charge.create(customer: customer.id, amount: 1000, description: 'Premium', currency: 'usd')
+
+  rescue Exception => e
+    Rails.logger.error "Stripe Error: #{e.class} - #{e.message}"
+    flash[:error] = "Payment error: #{e.message}"
+    resource.destroy
+    render :new and return
   end
 
 end
