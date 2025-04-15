@@ -8,6 +8,7 @@
         <div class="container d-flex flex-row justify-content-between align-items-center">
           <div class="d-flex justify-content-between">
           </div>
+          <p><%= current_user.email %></p>
           <div class="d-flex justify-content-between align-items-center">
             <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger ps-2" %>
           </div>
