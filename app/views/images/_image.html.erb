@@ -10,7 +10,11 @@
 
       <p>
         <strong>User:</strong>
-        <%= image.user_id %>
+        <% if image.user.name? %>
+            <%= image.user.name %>
+        <% else %>
+            <%= image.user.email%>
+        <% end %>
       </p>
     </div>
   </div>
