@@ -8,4 +8,12 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :payment
 
   has_many :images
+
+  def full_name
+    if name.present? || lastname.present?
+      "#{name} #{lastname}"
+    else
+      "Anonymous"
+    end
+  end
 end
