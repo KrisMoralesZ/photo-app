@@ -113,6 +113,11 @@ GEM
       html2haml
     erubi (1.13.1)
     erubis (2.7.0)
+    factory_bot (6.5.1)
+      activesupport (>= 6.1.0)
+    factory_bot_rails (6.4.4)
+      factory_bot (~> 6.5)
+      railties (>= 5.0.0)
     ffi (1.17.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -318,6 +323,7 @@ DEPENDENCIES
   devise-bootstrap-views
   dotenv-rails
   erb2haml
+  factory_bot_rails
   haml-rails
   importmap-rails
   jbuilder
