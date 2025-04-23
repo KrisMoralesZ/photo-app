@@ -1,0 +1,21 @@
+<div class="col-md-3 mb-4">
+  <div class="card border-dark ml-1 mr-1"  style="width: 18rem;">
+    <div id="<%= dom_id image %>" class="card-body">
+      <%= image_tag image.picture.url, size: "250x250"%>
+
+      <p>
+        <strong>Name:</strong>
+        <%= link_to image.name, image %>
+      </p>
+
+      <p>
+        <strong>User:</strong>
+        <% if image.user.name? %>
+            <%= image.user.name %>
+        <% else %>
+            <%= image.user.email%>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>

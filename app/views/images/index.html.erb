@@ -1,0 +1,13 @@
+<div class="mb-4">
+    <p style="color: green"><%= notice %></p>
+
+    <h1>Images</h1>
+
+    <div id="images" class="card-group">
+      <% @images.each do |image| %>
+        <%= render image %>
+      <% end %>
+    </div>
+
+    <%= link_to "New image", new_image_path %>
+</div>
