@@ -6,6 +6,8 @@
     <tr>
       <th>Name</th>
       <th>Last Name</th>
+      <th>Profile</th>
+      <th>Actions</th>
     </tr>
     </thead>
     <tbody id="usersTable">
@@ -13,6 +15,14 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.lastname %></td>
+        <td><%= link_to "Show Profile", user_path(user), class: "btn btn-secondary" %></td>
+        <td>
+          <% if  current_user.following?(user) %>
+            <%= button_to "Remove Friends List", follow_path(user), method: :delete, class: "btn btn-danger"%>
+          <% else %>
+            <%= button_to "Follow this user", follows_path(followed_id: user.id), method: :post, class: "btn btn-primary"%>
+          <% end %>
+        </td>
       </tr>
     <% end %>
     </tbody>

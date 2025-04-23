@@ -15,9 +15,9 @@
 
   <body>
     <%= render "layouts/navigation" %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <div class="container">
+      <p class="notice" style="color: green"><%= notice %></p>
+      <p class="alert" style="color: red"><%= alert %></p>
       <%= yield %>
     </div>
   </body>
