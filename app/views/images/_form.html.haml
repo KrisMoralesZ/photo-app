@@ -1,0 +1,21 @@
+= form_for @image, :html => { multipart: true, :class => "form-horizontal image" } do |f|
+  - if @image.errors.any?
+    #error_expl.panel.panel-danger
+      .panel-heading
+        %h3.panel-title
+          = pluralize(@image.errors.count, "error")
+          prohibited this image from being saved:
+      .panel-body
+        %ul
+          - @image.errors.full_messages.each do |msg|
+            %li= msg
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'form-control'
+  .control-group
+    = f.label :picture, :class => 'control-label'
+    .controls
+      = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'
+  = f.submit nil, :class => 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), images_path, :class => 'btn btn-default'

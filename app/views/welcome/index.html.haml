@@ -1,0 +1,33 @@
+- if current_user
+  %h3
+    Welcome: #{current_user.email}
+- else
+  .jumbotron
+    %h2 Welcome to the Photo Management App!
+    %p.lead
+      You'll love managing your Photos with our application. Sign up!
+  .row
+    .plans.clearfix
+      .col-lg-3.col-lg-offset-3.plan
+        %h2 Premium Plan
+        .price.pull-right
+          Price: $10
+        .features
+          %ul
+            %li Unlimited Image Uploads
+            %li Responsive design
+            %li Access anywhere
+        %p
+          = link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary sign-up'
+      .col-lg-3.plan
+        %h2 Amaze Plan
+        .price.pull-right
+          Price: $20
+        .features
+          %ul
+            %li Unlimited Image Uploads
+            %li Responsive design
+            %li Access anywhere
+            %li.extra Unlimited projects
+        %p
+          = link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary sign-up'

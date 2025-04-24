@@ -1,0 +1,12 @@
+%h1= @title
+%div
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Name
+        %th Email
+    %tbody#followingTable
+      - @following.each do |fallowing|
+        %tr
+          %td= fallowing.name
+          %td= fallowing.email

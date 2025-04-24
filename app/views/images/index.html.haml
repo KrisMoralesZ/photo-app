@@ -1,0 +1,6 @@
+.mb-4
+  %h1 Images
+  #images.card-group
+    - @images.each do |image|
+      = render image
+  = link_to "New image", new_image_path

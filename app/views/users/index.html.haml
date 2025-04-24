@@ -1,0 +1,20 @@
+%h1 Users
+%div
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Name
+        %th Last Name
+        %th Profile
+        %th Actions
+    %tbody#usersTable
+      - @users.each do |user|
+        %tr
+          %td= user.name
+          %td= user.lastname
+          %td= link_to "Show Profile", user_path(user), class: "btn btn-secondary"
+          %td
+            - if  current_user.following?(user)
+              = button_to "Remove Friends List", follow_path(user), method: :delete, class: "btn btn-danger"
+            - else
+              = button_to "Follow this user", follows_path(followed_id: user.id), method: :post, class: "btn btn-primary"

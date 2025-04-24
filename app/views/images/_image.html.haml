@@ -1,0 +1,13 @@
+.col-md-3.mb-4
+  .card.border-dark.ml-1.mr-1{:style => "width: 18rem;"}
+    .card-body{:id => "#{dom_id image}"}
+      = image_tag image.picture.url, size: "250x250"
+      %p
+        %strong Name:
+        = link_to image.name, image
+      %p
+        %strong User:
+        - if image.user.name?
+          = image.user.name
+        - else
+          = image.user.email

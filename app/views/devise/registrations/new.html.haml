@@ -1,0 +1,48 @@
+%body
+  .d-flex.justify-content-center.align-items-center
+    .w-100{:style => "max-width: 400px;"}
+      %h1.text-center.mb-4= t('.sign_up')
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "cc_form" }) do |f|
+        = bootstrap_devise_error_messages!
+      .form-group.mt-4.mb-4
+        = f.label :email
+        = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
+      .form-group.mt-4.mb-4
+        = f.label :name
+        = f.text_field :name, autofocus: true, autocomplete: 'name', class: 'form-control'
+      .form-group.mt-4.mb-4
+        = f.label :lastname
+        = f.text_field :lastname, autofocus: true, autocomplete: 'lastname', class: 'form-control'
+      .form-group.mt-4.mb-4
+        = f.label :password
+        = f.password_field :password, autocomplete: 'new-password', class: 'form-control'
+        - if @minimum_password_length
+          %small.form-text.text-muted
+            = t('devise.shared.minimum_password_length', count: @minimum_password_length)
+      .form-group.mt-4.mb-4
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control'
+      .form-group.mt-4.mb-4
+        %label{:for => "card-element"} Credit or debit card
+        #card-element.form-control
+        #card-errors.text-danger.mt-2{:role => "alert"}
+      .form-group.mt-4.mb-4.d-flex.justify-content-center.align-items-center
+        = f.submit t('.sign_up'), class: 'btn btn-primary'
+      = render 'devise/shared/links'
+  :javascript
+    stripe.createToken(card).then(function(result) {
+        if (result.error) {
+            // Show error
+        } else {
+            // Append token to hidden input
+            var form = document.getElementById('registration_form');
+            var hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'payment[token]');
+            hiddenInput.setAttribute('value', result.token.id);
+            form.appendChild(hiddenInput);
+
+            // Submit the form
+            form.submit();
+        }
+    });

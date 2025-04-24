@@ -68,4 +68,18 @@ RSpec.configure do |config|
   config.before(:each) do
     Rails.application.routes.default_url_options[:host] = 'localhost:3000'
   end
+
+  config.include Devise::Test::IntegrationHelpers, type: :request
+
+  config.include FactoryBot::Syntax::Methods
+
+  config.include Shoulda::Matchers::ActiveModel, type: :model
+
+  Shoulda::Matchers.configure do |config|
+    config.integrate do |with|
+      with.test_framework :rspec
+      with.library :rails
+    end
+  end
 end
+
